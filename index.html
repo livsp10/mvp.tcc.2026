@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!--
+        Escola Estadual Culto à Ciência — Campinas/SP
+        MVP do Site Institucional (Base para TCC)
+        
+        METADADOS E CONFIGURAÇÕES
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MVP do Site Institucional da Escola Estadual Culto à Ciência em Campinas-SP. Tradição, Ensino Integral, Itinerários Formativos e Acervo Cultural.">
+    <title>Escola Estadual Culto à Ciência | Campinas - SP</title>
+
+    <!-- FONTES EXTERNAS (GOOGLE FONTS) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- ÍCONES (FONT AWESOME) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- ARQUIVOS DE ESTILO E SCRIPT DO MVP -->
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- =========================================================================
+         BARRA DE ACESSIBILIDADE
+         ========================================================================= -->
+    <div class="accessibility-bar" id="barra-acessibilidade">
+        <div class="accessibility-bar__container">
+            <span class="accessibility-bar__title">Acessibilidade:</span>
+            <div class="accessibility-bar__buttons">
+                <button type="button" id="btn-aumentar-fonte" class="accessibility-bar__btn" aria-label="Aumentar tamanho da fonte" title="Aumentar Fonte">A+</button>
+                <button type="button" id="btn-restaurar-fonte" class="accessibility-bar__btn" aria-label="Restaurar tamanho da fonte padrão" title="Tamanho Padrão">A</button>
+                <button type="button" id="btn-diminuir-fonte" class="accessibility-bar__btn" aria-label="Diminuir tamanho da fonte" title="Diminuir Fonte">A-</button>
+                <button type="button" id="btn-alto-contraste" class="accessibility-bar__btn" aria-label="Alternar modo de alto contraste" title="Alto Contraste">
+                    <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i> Alto Contraste
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         HEADER & NAVEGAÇÃO
+         ========================================================================= -->
+    <header class="header" id="header">
+        <div class="header__container">
+            <a href="#hero" class="header__brand" aria-label="Página Inicial - Escola Estadual Culto à Ciência">
+                <div class="header__logo-icon">
+                    <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                </div>
+                <div class="header__titles">
+                    <span class="header__school-name">Culto à Ciência</span>
+                    <span class="header__tagline">E.E. Campinas - SP</span>
+                </div>
+            </a>
+
+            <!-- Botão Hambúrguer Mobile -->
+            <button type="button" class="header__hamburger" id="hamburger-btn" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="main-nav">
+                <span class="header__hamburger-bar"></span>
+                <span class="header__hamburger-bar"></span>
+                <span class="header__hamburger-bar"></span>
+            </button>
+
+            <!-- Menu Principal -->
+            <nav class="header__nav" id="main-nav" aria-label="Navegação Principal">
+                <ul class="header__menu">
+                    <li class="header__item"><a href="#hero" class="header__link">Início</a></li>
+                    <li class="header__item"><a href="#historia" class="header__link">História</a></li>
+                    <li class="header__item"><a href="#gestao" class="header__link">Gestão</a></li>
+                    <li class="header__item"><a href="#professores" class="header__link">Professores</a></li>
+                    <li class="header__item"><a href="#integral" class="header__link">Ensino Integral</a></li>
+                    <li class="header__item"><a href="#itinerarios" class="header__link">Itinerários</a></li>
+                    <li class="header__item"><a href="#projetos" class="header__link">Projetos</a></li>
+                    <li class="header__item"><a href="#acervo" class="header__link">Acervo</a></li>
+                    <li class="header__item"><a href="#galeria" class="header__link">Galeria</a></li>
+                    <li class="header__item"><a href="#contato" class="header__link header__link--highlight">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- =========================================================================
+         CONTEÚDO PRINCIPAL (MAIN)
+         ========================================================================= -->
+    <main id="conteudo-principal">
+
+        <!-- =====================================================================
+             1. HERO / PÁGINA INICIAL
+             ===================================================================== -->
+        <section class="hero" id="hero" aria-label="Apresentação da Escola">
+            <div class="hero__overlay"></div>
+            <div class="hero__container">
+                <div class="hero__content">
+                    <span class="hero__badge">
+                        <i class="fa-solid fa-atom" aria-hidden="true"></i> Tradição que encontra o futuro
+                    </span>
+                    <h1 class="hero__title">Tradição que encontra o futuro.</h1>
+                    <p class="hero__subtitle">
+                        Bem-vindos à Escola Estadual Culto à Ciência. Uma instituição histórica em Campinas que une tradição, inovação pedagógica e compromisso com o desenvolvimento dos nossos estudantes.
+                    </p>
+                    <div class="hero__actions">
+                        <a href="#integral" class="btn btn--primary">Conheça a escola</a>
+                        <a href="#historia" class="btn btn--outline">Nossa história</a>
+                    </div>
+                </div>
+
+                <div class="hero__visual">
+                    <div class="mascote-box">
+                        <div class="mascote" id="mascote-hero">
+                            <div class="mascote__avatar">
+                                <i class="fa-solid fa-owl" aria-hidden="true"></i>
+                                <div class="mascote__badge">
+                                    <i class="fa-solid fa-atom" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <div class="mascote__speech">
+                                <span>Olá! Sou o <strong>Cultinho</strong>! Vamos explorar nossa escola?</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero__image-card">
+                        <div class="hero__placeholder-image">
+                            <i class="fa-solid fa-landmark" aria-hidden="true"></i>
+                            <span>[ Fachada Histórica da Escola ]</span>
+                        </div>
+                        <div class="hero__card-tag">
+                            <i class="fa-solid fa-certificate" aria-hidden="true"></i>
+                            <span>Patrimônio Cultural de Campinas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             2. HISTÓRIA DA ESCOLA
+             ===================================================================== -->
+        <section class="section historia" id="historia" aria-labelledby="titulo-historia">
+            <div class="container">
+                <header class="section__header">
+                    <span class="section__subtitle">Memória & Tradição</span>
+                    <h2 class="section__title" id="titulo-historia">História da Escola</h2>
+                    <p class="section__description">
+                        Uma trajetória secular marcada pelo compromisso com o saber, com a ciência e com a comunidade de Campinas.
+                    </p>
+                </header>
+
+                <div class="historia__cards">
+                    <article class="card-historia">
+                        <div class="card-historia__icon">
+                            <i class="fa-solid fa-book-bookmark" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="card-historia__title">Fundação</h3>
+                        <p class="card-historia__text">
+                            Fundada em 1873 pela Sociedade Culto à Ciência, a instituição nasceu sob ideais inovadores para promover o ensino científico e o pensamento crítico.
+                        </p>
+                    </article>
+
+                    <article class="card-historia">
+                        <div class="card-historia__icon">
+                            <i class="fa-solid fa-monument" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="card-historia__title">Patrimônio Histórico</h3>
+                        <p class="card-historia__text">
+                            Seu prédio centenário é um marco arquitetônico e cultural tombado, preservando a memória da educação pública paulista.
+                        </p>
+                    </article>
+
+                    <article class="card-historia">
+                        <div class="card-historia__icon">
+                            <i class="fa-solid fa-city" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="card-historia__title">Importância para Campinas</h3>
+                        <p class="card-historia__text">
+                            Referência na formação de gerações de alunos, personalidades e cientistas que contribuíram para o desenvolvimento da cidade.
+                        </p>
+                    </article>
+                </div>
+
+                <div class="historia__timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-item__year">1873</span>
+                        <p class="timeline-item__desc">Fundação da Sociedade Culto à Ciência.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-item__year">Séc. XX</span>
+                        <p class="timeline-item__desc">Estatização e consolidação no ensino público.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-item__year">Hoje</span>
+                        <p class="timeline-item__desc">Ensino Integral e novos itinerários formativos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             3. GESTÃO ESCOLAR
+             ===================================================================== -->
+        <section class="section gestao" id="gestao" aria-labelledby="titulo-gestao">
+            <div class="container">
+                <header class="section__header">
+                    <span class="section__subtitle">Liderança & Organização</span>
+                    <h2 class="section__title" id="titulo-gestao">Gestão Escolar</h2>
+                    <p class="section__description">
+                        Equipe dedicada à gestão pedagógica, administrativa e ao acolhimento da comunidade.
+                    </p>
+                </header>
+
+                <div class="gestao__grid">
+                    <article class="card-gestao">
+                        <div class="card-gestao__image-container">
+                            <div class="card-gestao__placeholder">
+                                <i class="fa-solid fa-user-tie" aria-hidden="true"></i>
+                                <span>[ Foto Diretor Glauber ]</span>
+                            </div>
+                        </div>
+                        <div class="card-gestao__content">
+                            <h3 class="card-gestao__name">Glauber</h3>
+                            <span class="card-gestao__role">Diretor de Escola</span>
+                            <p class="card-gestao__desc">
+                                Liderança geral, articulação comunitária e garantia da qualidade de ensino e da estrutura escolar.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="card-gestao">
+                        <div class="card-gestao__image-container">
+                            <div class="card-gestao__placeholder">
+                                <i class="fa-solid fa-user-gear" aria-hidden="true"></i>
+                                <span>[ Foto Vice-Diretor José ]</span>
+                            </div>
+                        </div>
+                        <div class="card-gestao__content">
+                            <h3 class="card-gestao__name">José</h3>
+                            <span class="card-gestao__role">Vice-Diretor</span>
+                            <p class="card-gestao__desc">
+                                Suporte à gestão administrativa, organização da rotina e mediação da convivência escolar.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="card-gestao">
+                        <div class="card-gestao__image-container">
+                            <div class="card-gestao__placeholder">
+                                <i class="fa-solid fa-user-graduate" aria-hidden="true"></i>
+                                <span>[ Foto Coordenadora Natália ]</span>
+                            </div>
+                        </div>
+                        <div class="card-gestao__content">
+                            <h3 class="card-gestao__name">Natália</h3>
+                            <span class="card-gestao__role">Coordenadora Pedagógica</span>
+                            <p class="card-gestao__desc">
+                                Acompanhamento dos projetos pedagógicos, formação docente e suporte ao aprendizado dos alunos.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             4. ÁREA DE PROFESSORES (PASTAS POR ÁREA DE CONHECIMENTO)
+             ===================================================================== -->
+        <section class="section professores" id="professores" aria-labelledby="titulo-professores">
+            <div class="container">
+                <header class="section__header">
+                    <span class="section__subtitle">Corpo Docente</span>
+                    <h2 class="section__title" id="titulo-professores">Nossos Professores</h2>
+                    <p class="section__description">
+                        Clique em uma das áreas abaixo para abrir a pasta e visualizar os professores e seus respectivos nomes.
+                    </p>
+                </header>
+
+                <div class="professores__grid">
+                    <!-- Pasta Linguagens -->
+                    <button type="button" class="professores__pasta-card" data-area="linguagens" aria-label="Abrir pasta de Professores de Linguagens">
+                        <div class="professores__pasta-icon">
+                            <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+                        </div>
+                        <div class="professores__content">
+                            <span class="professores__area">Área do Conhecimento</span>
+                            <h3 class="professores__name">Professores de Linguagens</h3>
+                            <p class="professores__desc">Língua Portuguesa, Literatura, Inglês e Artes.</p>
+                        </div>
+                    </button>
+
+                    <!-- Pasta Exatas -->
+                    <button type="button" class="professores__pasta-card" data-area="exatas" aria-label="Abrir pasta de Professores de Exatas">
+                        <div class="professores__pasta-icon">
+                            <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+                        </div>
+                        <div class="professores__content">
+                            <span class="professores__area">Área do Conhecimento</span>
+                            <h3 class="professores__name">Professores de Exatas</h3>
+                            <p class="professores__desc">Matemática, Raciocínio Lógico e Estatística.</p>
+                        </div>
+                    </button>
+
+                    <!-- Pasta Ciências Humanas -->
+                    <button type="button" class="professores__pasta-card" data-area="humanas" aria-label="Abrir pasta de Professores de Ciências Humanas">
+                        <div class="professores__pasta-icon">
+                            <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+                        </div>
+                        <div class="professores__content">
+                            <span class="professores__area">Área do Conhecimento</span>
+                            <h3 class="professores__name">Professores de Ciências Humanas</h3>
+                            <p class="professores__desc">História, Geografia, Filosofia e Sociologia.</p>
+                        </div>
+                    </button>
+
+                    <!-- Pasta Ciências da Natureza -->
+                    <button type="button" class="professores__pasta-card" data-area="natureza" aria-label="Abrir pasta de Professores de Ciências da Natureza">
+                        <div class="professores__pasta-icon">
+                            <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+                        </div>
+                        <div class="professores__content">
+                            <span class="professores__area">Área do Conhecimento</span>
+                            <h3 class="professores__name">Professores de Ciências da Natureza</h3>
+                            <p class="professores__desc">Física, Química e Biologia.</p>
+                        </div>
+                    </button>
+
+                    <!-- Pasta Formação Técnica -->
+                    <button type="button" class="professores__pasta-card" data-area="tecnico" aria-label="Abrir pasta de Professores do Técnico">
+                        <div class="professores__pasta-icon">
+                            <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+                        </div>
+                        <div class="professores__content">
+                            <span class="professores__area">Área do Conhecimento</span>
+                            <h3 class="professores__name">Professores do Técnico</h3>
+                            <p class="professores__desc">Desenvolvimento de Sistemas e Enfermagem.</p>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             5. ENSINO INTEGRAL
+             ===================================================================== -->
+        <section class="section integral" id="integral" aria-labelledby="titulo-integral">
+            <div class="container">
+                <header class="section__header">
+                    <span class="section__subtitle">Modelo Pedagógico</span>
+                    <h2 class="section__title" id="titulo-integral">Ensino Integral</h2>
+                    <p class="section__description">
+                        Uma formação completa que fortalece os estudos, o protagonismo e o projeto de vida dos estudantes.
+                    </p>
+                </header>
+
+                <div class="integral__grid">
+                    <div class="integral__card">
+                        <div class="integral__icon"><i class="fa-solid fa-clock" aria-hidden="true"></i></div>
+                        <h3 class="integral__card-title">Jornada Ampliada</h3>
+                        <p class="integral__card-text">Tempo dedicado às disciplinas, orientação de estudos, tutoria e refeições diárias.</p>
+                    </div>
+
+                    <div class="integral__card">
+                        <div class="integral__icon"><i class="fa-solid fa-compass" aria-hidden="true"></i></div>
+                        <h3 class="integral__card-title">Projeto de Vida</h3>
+                        <p class="integral__card-text">Apoio contínuo no planejamento dos objetivos pessoais, acadêmicos e profissionais do aluno.</p>
+                    </div>
+
+                    <div class="integral__card">
+                        <div class="integral__icon"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></div>
+                        <h3 class="integral__card-title">Protagonismo Juvenil</h3>
+                        <p class="integral__card-text">Incentivo à liderança jovem através dos clubes juvenis, grêmio e atividades práticas.</p>
+                    </div>
+
+                    <div class="integral__card">
+                        <div class="integral__icon"><i class="fa-solid fa-people-group" aria-hidden="true"></i></div>
+                        <h3 class="integral__card-title">Convivência & Acolhimento</h3>
+                        <p class="integral__card-text">Ambiente seguro focado no respeito, empatia, trabalho em equipe e desenvolvimento cidadão.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             6. ITINERÁRIOS FORMATIVOS
+             ===================================================================== -->
+        <section class="section itinerarios" id="itinerarios" aria-labelledby="titulo-itinerarios">
+            <div class="container">
+                <header class="section__header">
+                    <span class="section__subtitle">Novo Ensino Médio</span>
+                    <h2 class="section__title" id="titulo-itinerarios">Itinerários Formativos</h2>
+                    <p class="section__description">
+                        Áreas de aprofundamento para os alunos desenvolverem habilidades voltadas ao futuro.
+                    </p>
+                </header>
+
+                <div class="itinerarios__grid">
+                    <article class="card-itinerario card-itinerario--tech">
+                        <div class="card-itinerario__header">
+                            <i class="fa-solid fa-code" aria-hidden="true"></i>
+                            <h3 class="card-itinerario__title">Desenvolvimento de Sistemas</h3>
+                        </div>
+                        <p class="card-itinerario__desc">
+                            Aprofundamento em tecnologia, programação, criação de projetos digitais, lógica e inovação.
+                        </p>
+                    </article>
+
+                    <article class="card-itinerario card-itinerario--humanas">
+                        <div class="card-itinerario__header">
+                            <i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>
+                            <h3 class="card-itinerario__title">Humanas</h3>
+                        </div>
+                        <p class="card-itinerario__desc">
+                            Estudo das ciências humanas, sociedade, cultura, cidadania, geopolítica e pensamento crítico.
+                        </p>
+                    </article>
+
+                    <article class="card-itinerario card-itinerario--exatas">
+                        <div class="card-itinerario__header">
+                            <i class="fa-solid fa-square-root-variable" aria-hidden="true"></i>
+                            <h3 class="card-itinerario__title">Exatas</h3>
+                        </div>
+                        <p class="card-itinerario__desc">
+                            Modelagem matemática, raciocínio lógico, física aplicada, método científico e resolução de problemas.
+                        </p>
+                    </article>
+
+                    <article class="card-itinerario card-itinerario--saude">
+                        <div class="card-itinerario__header">
+                            <i class="fa-solid fa-user-nurse" aria-hidden="true"></i>
+                            <h3 class="card-itinerario__title">Enfermagem</h3>
+                        </div>
+                        <p class="card-itinerario__desc">
+                            Conhecimentos voltados à área da saúde, cuidados essenciais, biologia humana e responsabilidade social.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             7. PROJETOS
+             ===================================================================== -->
+        <section class="section projetos" id="projetos" aria-labelledby="titulo-projetos">
+            <div class="container">
+                <header class="section__header">
+                    <span class="section__subtitle">Aprendizado Prático</span>
+                    <h2 class="section__title" id="titulo-projetos">Projetos Escolares</h2>
+                    <p class="section__description">
+                        Iniciativas pedagógicas que incentivam a pesquisa, a tecnologia e a diversidade cultural.
+                    </p>
+                </header>
+
+                <div class="projetos__grid">
+                    <article class="card-projeto">
+                        <div class="card-projeto__placeholder">
+                            <i class="fa-solid fa-microscope" aria-hidden="true"></i>
+                            <span>[ Projeto PIBIC ]</span>
+                        </div>
+                        <div class="card-projeto__content">
+                            <span class="card-projeto__tag">Iniciação Científica</span>
+                            <h3 class="card-projeto__title">PIBIC</h3>
+                            <p class="card-projeto__desc">Incentivo à pesquisa acadêmica e ao método científico com orientação docente.</p>
+                        </div>
+                    </article>
+
+                    <article class="card-projeto">
+                        <div class="card-projeto__placeholder">
+                            <i class="fa-solid fa-atom" aria-hidden="true"></i>
+                            <span>[ Feira de Ciências ]</span>
+                        </div>
+                        <div class="card-projeto__content">
+                            <span class="card-projeto__tag">Exposição</span>
+                            <h3 class="card-projeto__title">Feira de Ciências</h3>
+                            <p class="card-projeto__desc">Apresentação de experimentos e protótipos criados pelos estudantes para a comunidade.</p>
+                        </div>
+                    </article>
+
+                    <article class="card-projeto">
+                        <div class="card-projeto__placeholder">
+                            <i class="fa-solid fa-robot" aria-hidden="true"></i>
+                            <span>[ Robótica ]</span>
+                        </div>
+                        <div class="card-projeto__content">
+                            <span class="card-projeto__tag">Tecnologia</span>
+                            <h3 class="card-projeto__title">Robótica</h3>
+                            <p class="card-projeto__desc">Montagem e programação de automatismos, estimulando raciocínio lógico e trabalho em equipe.</p>
+                        </div>
+                    </article>
+
+                    <article class="card-projeto">
+                        <div class="card-projeto__placeholder">
+                            <i class="fa-solid fa-trophy" aria-hidden="true"></i>
+                            <span>[ Olimpíadas do Saber ]</span>
+                        </div>
+                        <div class="card-projeto__content">
+                            <span class="card-projeto__tag">Conhecimento</span>
+                            <h3 class="card-projeto__title">Olimpíadas</h3>
+                            <p class="card-projeto__desc">Participação da escola na OBMEP, OBA e olimpíadas do conhecimento.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             8. ACERVO CULTURAL (FOTOS, OBJETOS E DOCUMENTOS)
+             ===================================================================== -->
+        <section class="section acervo" id="acervo" aria-labelledby="titulo-acervo">
+            <div class="container">
+                <header class="section__header">
+                    <span class="section__subtitle">Museu Digital & Memória</span>
+                    <h2 class="section__title" id="titulo-acervo">Acervo Cultural</h2>
+                    <p class="section__description">
+                        Explore nosso repositório histórico dividido por categorias: fotos, objetos e documentos.
+                    </p>
+                </header>
+
+                <div class="acervo__grid">
+                    <!-- Pasta 1: Fotos -->
+                    <button type="button" class="acervo__item" data-category="fotos" aria-label="Abrir pasta de Fotografias Históricas">
+                        <div class="acervo__placeholder-img">
+                            <i class="fa-solid fa-camera-retro" aria-hidden="true"></i>
+                            <span>[ Abrir Pasta de Fotos ]</span>
+                        </div>
+                        <div class="acervo__content">
+                            <span class="acervo__category">Categoria</span>
+                            <h3 class="acervo__title">Fotografias Históricas</h3>
+                            <p class="acervo__desc">Imagens antigas da fachada, turmas e momentos marcantes da escola. Clique para visualizar e ampliar as fotos.</p>
+                        </div>
+                    </button>
+
+                    <!-- Pasta 2: Objetos Históricos -->
+                    <button type="button" class="acervo__item" data-category="objetos" aria-label="Abrir pasta de Objetos Históricos">
+                        <div class="acervo__placeholder-img">
+                            <i class="fa-solid fa-microscope" aria-hidden="true"></i>
+                            <span>[ Abrir Pasta de Objetos ]</span>
+                        </div>
+                        <div class="acervo__content">
+                            <span class="acervo__category">Categoria</span>
+                            <h3 class="acervo__title">Objetos Históricos</h3>
+                            <p class="acervo__desc">Instrumentos científicos, microscópios e materiais do século passado. Clique para abrir as fotos ampliadas.</p>
+                        </div>
+                    </button>
+
+                    <!-- Pasta 3: Documentos -->
+                    <button type="button" class="acervo__item" data-category="documentos" aria-label="Abrir pasta de Documentos Históricos">
+                        <div class="acervo__placeholder-img">
+                            <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
+                            <span>[ Abrir Pasta de Documentos ]</span>
+                        </div>
+                        <div class="acervo__content">
+                            <span class="acervo__category">Categoria</span>
+                            <h3 class="acervo__title">Documentos Históricos</h3>
+                            <p class="acervo__desc">Atas de fundação, regimentos e periódicos estudantis centenários com leitura completa expansível.</p>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             9. GALERIA
+             ===================================================================== -->
+        <section class="section galeria" id="galeria" aria-labelledby="titulo-galeria">
+            <div class="container">
+                <header class="section__header">
+                    <span class="section__subtitle">Registros da Escola</span>
+                    <h2 class="section__title" id="titulo-galeria">Galeria</h2>
+                    <p class="section__description">
+                        Imagens demonstrativas das dependências e espaços de aprendizado da escola.
+                    </p>
+                </header>
+
+                <div class="galeria__grid">
+                    <div class="galeria__item">
+                        <div class="galeria__placeholder">
+                            <i class="fa-solid fa-image" aria-hidden="true"></i>
+                            <span>[ Foto 1: Fachada Principal ]</span>
+                        </div>
+                    </div>
+
+                    <div class="galeria__item">
+                        <div class="galeria__placeholder">
+                            <i class="fa-solid fa-image" aria-hidden="true"></i>
+                            <span>[ Foto 2: Laboratório ]</span>
+                        </div>
+                    </div>
+
+                    <div class="galeria__item">
+                        <div class="galeria__placeholder">
+                            <i class="fa-solid fa-image" aria-hidden="true"></i>
+                            <span>[ Foto 3: Pátio Interno ]</span>
+                        </div>
+                    </div>
+
+                    <div class="galeria__item">
+                        <div class="galeria__placeholder">
+                            <i class="fa-solid fa-image" aria-hidden="true"></i>
+                            <span>[ Foto 4: Quadra Coberta ]</span>
+                        </div>
+                    </div>
+
+                    <div class="galeria__item">
+                        <div class="galeria__placeholder">
+                            <i class="fa-solid fa-image" aria-hidden="true"></i>
+                            <span>[ Foto 5: Biblioteca ]</span>
+                        </div>
+                    </div>
+
+                    <div class="galeria__item">
+                        <div class="galeria__placeholder">
+                            <i class="fa-solid fa-image" aria-hidden="true"></i>
+                            <span>[ Foto 6: Sala de Aula ]</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lightbox Modal de Ampliação Exclusivo para as Fotos do Acervo -->
+        <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de Imagem do Acervo" hidden>
+            <div class="lightbox__backdrop" id="lightbox-backdrop"></div>
+            <div class="lightbox__content">
+                <button type="button" class="lightbox__close" id="lightbox-close" aria-label="Fechar visualizador">&times;</button>
+                <button type="button" class="lightbox__nav lightbox__nav--prev" id="lightbox-prev" aria-label="Imagem anterior">
+                    <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+                </button>
+                <div class="lightbox__body">
+                    <div class="lightbox__placeholder" id="lightbox-display">
+                        <i class="fa-solid fa-camera-retro" aria-hidden="true"></i>
+                        <span id="lightbox-caption">[ Foto do Acervo Ampliada ]</span>
+                    </div>
+                </div>
+                <button type="button" class="lightbox__nav lightbox__nav--next" id="lightbox-next" aria-label="Próxima imagem">
+                    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- =====================================================================
+             10. CONTATO (FORMULÁRIO ÚNICO DEMONSTRATIVO)
+             ===================================================================== -->
+        <section class="section contato" id="contato" aria-labelledby="titulo-contato">
+            <div class="container">
+                <header class="section__header">
+                    <span class="section__subtitle">Atendimento</span>
+                    <h2 class="section__title" id="titulo-contato">Contato</h2>
+                    <p class="section__description">
+                        Entre em contato com nossa equipe ou faça-nos uma visita na unidade de Campinas.
+                    </p>
+                </header>
+
+                <div class="contato__grid">
+                    <div class="contato__info">
+                        <h3 class="contato__info-title">Escola Estadual Culto à Ciência</h3>
+                        
+                        <div class="contato__item">
+                            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                            <div>
+                                <strong>Endereço:</strong>
+                                <p>Rua Culto à Ciência, s/n - Botafogo, Campinas - SP [ Placeholder ]</p>
+                            </div>
+                        </div>
+
+                        <div class="contato__item">
+                            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                            <div>
+                                <strong>Telefone:</strong>
+                                <p>(19) 0000-0000 [ Placeholder ]</p>
+                            </div>
+                        </div>
+
+                        <div class="contato__item">
+                            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                            <div>
+                                <strong>E-mail:</strong>
+                                <p>e000000a@educacao.sp.gov.br [ Placeholder ]</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="contato__form" id="form-contato" novalidate>
+                        <h3 class="contato__form-title">Envie uma Mensagem</h3>
+                        
+                        <div class="form-group">
+                            <label for="contato-nome">Nome Completo <span class="required">*</span></label>
+                            <input type="text" id="contato-nome" name="nome" class="form-control" required placeholder="Seu nome completo">
+                            <span class="form-error" id="erro-nome" aria-live="polite"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contato-telefone">Telefone <span class="required">*</span></label>
+                            <input type="tel" id="contato-telefone" name="telefone" class="form-control" required placeholder="(19) 90000-0000">
+                            <span class="form-error" id="erro-telefone" aria-live="polite"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contato-email">E-mail <span class="required">*</span></label>
+                            <input type="email" id="contato-email" name="email" class="form-control" required placeholder="seuemail@exemplo.com">
+                            <span class="form-error" id="erro-email" aria-live="polite"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contato-mensagem">Mensagem <span class="required">*</span></label>
+                            <textarea id="contato-mensagem" name="mensagem" class="form-control" rows="4" required placeholder="Escreva sua mensagem aqui..."></textarea>
+                            <span class="form-error" id="erro-mensagem" aria-live="polite"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn--primary btn--block">Enviar Mensagem</button>
+                        <div class="form-feedback" id="form-feedback" aria-live="polite"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =========================================================================
+         MODAIS DE PASTA (ACERVO E PROFESSORES)
+         ========================================================================= -->
+         
+    <!-- 1. MODAL PASTA DO ACERVO CULTURAL -->
+    <div class="modal-acervo" id="modal-acervo" role="dialog" aria-modal="true" aria-label="Pasta de Itens do Acervo" hidden>
+        <div class="modal-acervo__backdrop" id="modal-acervo-backdrop"></div>
+        <div class="modal-acervo__window">
+            <header class="modal-acervo__header">
+                <div class="modal-acervo__header-title">
+                    <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+                    <h3 id="modal-acervo-titulo">Pasta do Acervo</h3>
+                </div>
+                <button type="button" class="modal-acervo__close" id="modal-acervo-close" aria-label="Fechar pasta">&times;</button>
+            </header>
+            <div class="modal-acervo__body">
+                <p class="modal-acervo__desc" id="modal-acervo-desc">Conteúdo da pasta histórica do acervo.</p>
+                <div class="modal-acervo__grid" id="modal-acervo-grid">
+                    <!-- Conteúdo gerado dinamicamente via JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. MODAL PASTA DE PROFESSORES -->
+    <div class="modal-professores" id="modal-professores" role="dialog" aria-modal="true" aria-label="Pasta da Área do Conhecimento" hidden>
+        <div class="modal-professores__backdrop" id="modal-professores-backdrop"></div>
+        <div class="modal-professores__window">
+            <header class="modal-professores__header">
+                <div class="modal-professores__header-title">
+                    <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                    <h3 id="modal-professores-titulo">Professores da Área</h3>
+                </div>
+                <button type="button" class="modal-professores__close" id="modal-professores-close" aria-label="Fechar lista de professores">&times;</button>
+            </header>
+            <div class="modal-professores__body">
+                <p class="modal-professores__desc" id="modal-professores-desc">Corpo docente integrante desta disciplina.</p>
+                <div class="modal-professores__grid" id="modal-professores-grid">
+                    <!-- Cards informativos gerados dinamicamente via JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         CHATBOT FLUTUANTE (COM MASCOTE CULTINHO)
+         ========================================================================= -->
+    <aside class="chatbot" id="chatbot-container" aria-label="Assistente Virtual da Escola">
+        <button type="button" class="chatbot__toggle" id="chatbot-toggle-btn" aria-label="Abrir assistente Cultinho" aria-expanded="false">
+            <div class="chatbot__toggle-avatar">
+                <i class="fa-solid fa-owl" aria-hidden="true"></i>
+            </div>
+            <span class="chatbot__toggle-label">Dúvidas? Fale com o Cultinho</span>
+        </button>
+
+        <div class="chatbot__window" id="chatbot-window" hidden>
+            <header class="chatbot__header">
+                <div class="chatbot__header-info">
+                    <div class="chatbot__mascote-header">
+                        <i class="fa-solid fa-owl" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <strong class="chatbot__title">Cultinho • Assistente Virtual</strong>
+                        <span class="chatbot__status">Online (Demonstrativo)</span>
+                    </div>
+                </div>
+                <button type="button" class="chatbot__close" id="chatbot-close-btn" aria-label="Fechar assistente">&times;</button>
+            </header>
+
+            <div class="chatbot__messages" id="chatbot-messages">
+                <div class="chatbot__message chatbot__message--bot">
+                    <p>Olá! Sou o <strong>Cultinho</strong>, mascote do Culto à Ciência! Como posso ajudar você hoje?</p>
+                </div>
+            </div>
+
+            <form class="chatbot__input-area" id="chatbot-form">
+                <input type="text" id="chatbot-input" class="chatbot__input" placeholder="Digite sua dúvida..." aria-label="Digite sua mensagem para o Cultinho">
+                <button type="submit" class="chatbot__send-btn" aria-label="Enviar mensagem">
+                    <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                </button>
+            </form>
+        </div>
+    </aside>
+
+    <!-- BOTÃO VOLTAR AO TOPO -->
+    <button type="button" class="back-to-top" id="back-to-top-btn" title="Voltar ao topo" aria-label="Voltar ao topo da página">
+        <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <!-- =========================================================================
+         FOOTER
+         ========================================================================= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__col">
+                    <div class="footer__brand">
+                        <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                        <span>E.E. Culto à Ciência</span>
+                    </div>
+                    <p class="footer__text">
+                        Tradição centenária na formação de cidadãos e inovação no ensino público em Campinas-SP.
+                    </p>
+                    <div class="footer__socials">
+                        <a href="#" class="footer__social-link" aria-label="Facebook [ Placeholder ]"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+                        <a href="#" class="footer__social-link" aria-label="Instagram [ Placeholder ]"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#" class="footer__social-link" aria-label="YouTube [ Placeholder ]"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer__col">
+                    <h3 class="footer__title">Navegação</h3>
+                    <ul class="footer__links">
+                        <li><a href="#historia">História</a></li>
+                        <li><a href="#gestao">Gestão</a></li>
+                        <li><a href="#professores">Professores</a></li>
+                        <li><a href="#integral">Ensino Integral</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__col">
+                    <h3 class="footer__title">Institucional</h3>
+                    <ul class="footer__links">
+                        <li><a href="#itinerarios">Itinerários</a></li>
+                        <li><a href="#projetos">Projetos</a></li>
+                        <li><a href="#acervo">Acervo Cultural</a></li>
+                        <li><a href="#galeria">Galeria</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer__col">
+                    <h3 class="footer__title">Localização</h3>
+                    <p class="footer__address">
+                        Rua Culto à Ciência, s/n<br>
+                        Botafogo — Campinas/SP<br>
+                        CEP: 13020-060 [ Placeholder ]
+                    </p>
+                    <p class="footer__contact-quick">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i> (19) 0000-0000 [ Placeholder ]
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <p>&copy; 2026 Escola Estadual Culto à Ciência. Todos os direitos reservados. MVP desenvolvido para TCC.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
