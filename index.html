@@ -2,7 +2,6 @@
 <html lang="pt-BR">
 <head>
     <!--
-        Escola Estadual Culto à Ciência — Campinas/SP
         MVP do Site Institucional (Base para TCC)
         
         METADADOS E CONFIGURAÇÕES
@@ -89,7 +88,7 @@
     <main id="conteudo-principal">
 
         <!-- =====================================================================
-             1. HERO / PÁGINA INICIAL
+             1. HERO / PÁGINA INICIAL (COM MASCOTE CULTINHO)
              ===================================================================== -->
         <section class="hero" id="hero" aria-label="Apresentação da Escola">
             <div class="hero__overlay"></div>
@@ -109,10 +108,11 @@
                 </div>
 
                 <div class="hero__visual">
+                    <!-- Elemento Visual do Mascote Cultinho -->
                     <div class="mascote-box">
                         <div class="mascote" id="mascote-hero">
                             <div class="mascote__avatar">
-                                <i class="fa-solid fa-owl" aria-hidden="true"></i>
+                                <img src=".png" alt="Cultinho" class="mascote__avatar-img">
                                 <div class="mascote__badge">
                                     <i class="fa-solid fa-atom" aria-hidden="true"></i>
                                 </div>
@@ -182,6 +182,7 @@
                     </article>
                 </div>
 
+                <!-- Destaque Cronológico Editorial -->
                 <div class="historia__timeline">
                     <div class="timeline-item">
                         <span class="timeline-item__year">1873</span>
@@ -213,6 +214,7 @@
                 </header>
 
                 <div class="gestao__grid">
+                    <!-- Diretor -->
                     <article class="card-gestao">
                         <div class="card-gestao__image-container">
                             <div class="card-gestao__placeholder">
@@ -229,6 +231,7 @@
                         </div>
                     </article>
 
+                    <!-- Vice-Diretor -->
                     <article class="card-gestao">
                         <div class="card-gestao__image-container">
                             <div class="card-gestao__placeholder">
@@ -245,6 +248,7 @@
                         </div>
                     </article>
 
+                    <!-- Coordenação -->
                     <article class="card-gestao">
                         <div class="card-gestao__image-container">
                             <div class="card-gestao__placeholder">
@@ -265,7 +269,7 @@
         </section>
 
         <!-- =====================================================================
-             4. ÁREA DE PROFESSORES (PASTAS POR ÁREA DE CONHECIMENTO)
+             4. ÁREA DE PROFESSORES
              ===================================================================== -->
         <section class="section professores" id="professores" aria-labelledby="titulo-professores">
             <div class="container">
@@ -273,70 +277,71 @@
                     <span class="section__subtitle">Corpo Docente</span>
                     <h2 class="section__title" id="titulo-professores">Nossos Professores</h2>
                     <p class="section__description">
-                        Clique em uma das áreas abaixo para abrir a pasta e visualizar os professores e seus respectivos nomes.
+                        Estrutura preparada para apresentar a equipe de professores por área de conhecimento.
                     </p>
                 </header>
 
+                <!-- Filtros Demonstrativos por Área -->
+                <div class="professores__filters">
+                    <button type="button" class="professores__filter-btn professores__filter-btn--active" data-filter="todos">Todos</button>
+                    <button type="button" class="professores__filter-btn" data-filter="linguagens">Linguagens</button>
+                    <button type="button" class="professores__filter-btn" data-filter="humanas">Ciências Humanas</button>
+                    <button type="button" class="professores__filter-btn" data-filter="natureza">Ciências da Natureza</button>
+                    <button type="button" class="professores__filter-btn" data-filter="matematica">Matemática</button>
+                </div>
+
                 <div class="professores__grid">
-                    <!-- Pasta Linguagens -->
-                    <button type="button" class="professores__pasta-card" data-area="linguagens" aria-label="Abrir pasta de Professores de Linguagens">
-                        <div class="professores__pasta-icon">
-                            <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+                    <!-- Placeholder Professor 1 -->
+                    <article class="professores__card" data-area="linguagens">
+                        <div class="professores__placeholder-img">
+                            <i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i>
+                            <span>[ Foto Professor ]</span>
                         </div>
                         <div class="professores__content">
-                            <span class="professores__area">Área do Conhecimento</span>
-                            <h3 class="professores__name">Professores de Linguagens</h3>
-                            <p class="professores__desc">Língua Portuguesa, Literatura, Inglês e Artes.</p>
+                            <span class="professores__area">Linguagens</span>
+                            <h3 class="professores__name">Prof. [ Nome do Professor ]</h3>
+                            <span class="professores__subject">Língua Portuguesa e Literatura</span>
                         </div>
-                    </button>
+                    </article>
 
-                    <!-- Pasta Exatas -->
-                    <button type="button" class="professores__pasta-card" data-area="exatas" aria-label="Abrir pasta de Professores de Exatas">
-                        <div class="professores__pasta-icon">
-                            <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+                    <!-- Placeholder Professor 2 -->
+                    <article class="professores__card" data-area="humanas">
+                        <div class="professores__placeholder-img">
+                            <i class="fa-solid fa-earth-americas" aria-hidden="true"></i>
+                            <span>[ Foto Professor ]</span>
                         </div>
                         <div class="professores__content">
-                            <span class="professores__area">Área do Conhecimento</span>
-                            <h3 class="professores__name">Professores de Exatas</h3>
-                            <p class="professores__desc">Matemática, Raciocínio Lógico e Estatística.</p>
+                            <span class="professores__area">Ciências Humanas</span>
+                            <h3 class="professores__name">Prof. [ Nome do Professor ]</h3>
+                            <span class="professores__subject">História e Geografia</span>
                         </div>
-                    </button>
+                    </article>
 
-                    <!-- Pasta Ciências Humanas -->
-                    <button type="button" class="professores__pasta-card" data-area="humanas" aria-label="Abrir pasta de Professores de Ciências Humanas">
-                        <div class="professores__pasta-icon">
-                            <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+                    <!-- Placeholder Professor 3 -->
+                    <article class="professores__card" data-area="natureza">
+                        <div class="professores__placeholder-img">
+                            <i class="fa-solid fa-flask-vial" aria-hidden="true"></i>
+                            <span>[ Foto Professor ]</span>
                         </div>
                         <div class="professores__content">
-                            <span class="professores__area">Área do Conhecimento</span>
-                            <h3 class="professores__name">Professores de Ciências Humanas</h3>
-                            <p class="professores__desc">História, Geografia, Filosofia e Sociologia.</p>
+                            <span class="professores__area">Ciências da Natureza</span>
+                            <h3 class="professores__name">Prof. [ Nome do Professor ]</h3>
+                            <span class="professores__subject">Física, Química e Biologia</span>
                         </div>
-                    </button>
+                    </article>
 
-                    <!-- Pasta Ciências da Natureza -->
-                    <button type="button" class="professores__pasta-card" data-area="natureza" aria-label="Abrir pasta de Professores de Ciências da Natureza">
-                        <div class="professores__pasta-icon">
-                            <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+                    <!-- Placeholder Professor 4 -->
+                    <article class="professores__card" data-area="matematica">
+                        <div class="professores__placeholder-img">
+                            <i class="fa-solid fa-calculator" aria-hidden="true"></i>
+                            <span>[ Foto Professor ]</span>
                         </div>
                         <div class="professores__content">
-                            <span class="professores__area">Área do Conhecimento</span>
-                            <h3 class="professores__name">Professores de Ciências da Natureza</h3>
-                            <p class="professores__desc">Física, Química e Biologia.</p>
+                            <span class="professores__area">Matemática</span>
+                            <h3 class="professores__name">Prof. [ Nome do Professor ]</h3>
+                            <span class="professores__subject">Matemática e Raciocínio Lógico</span>
                         </div>
-                    </button>
-
-                    <!-- Pasta Formação Técnica -->
-                    <button type="button" class="professores__pasta-card" data-area="tecnico" aria-label="Abrir pasta de Professores do Técnico">
-                        <div class="professores__pasta-icon">
-                            <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
-                        </div>
-                        <div class="professores__content">
-                            <span class="professores__area">Área do Conhecimento</span>
-                            <h3 class="professores__name">Professores do Técnico</h3>
-                            <p class="professores__desc">Desenvolvimento de Sistemas e Enfermagem.</p>
-                        </div>
-                    </button>
+                    </article>
                 </div>
             </div>
         </section>
@@ -396,6 +401,7 @@
                 </header>
 
                 <div class="itinerarios__grid">
+                    <!-- Desenvolvimento de Sistemas -->
                     <article class="card-itinerario card-itinerario--tech">
                         <div class="card-itinerario__header">
                             <i class="fa-solid fa-code" aria-hidden="true"></i>
@@ -406,6 +412,7 @@
                         </p>
                     </article>
 
+                    <!-- Humanas -->
                     <article class="card-itinerario card-itinerario--humanas">
                         <div class="card-itinerario__header">
                             <i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>
@@ -416,6 +423,7 @@
                         </p>
                     </article>
 
+                    <!-- Exatas -->
                     <article class="card-itinerario card-itinerario--exatas">
                         <div class="card-itinerario__header">
                             <i class="fa-solid fa-square-root-variable" aria-hidden="true"></i>
@@ -426,6 +434,7 @@
                         </p>
                     </article>
 
+                    <!-- Enfermagem -->
                     <article class="card-itinerario card-itinerario--saude">
                         <div class="card-itinerario__header">
                             <i class="fa-solid fa-user-nurse" aria-hidden="true"></i>
@@ -453,6 +462,7 @@
                 </header>
 
                 <div class="projetos__grid">
+                    <!-- PIBIC -->
                     <article class="card-projeto">
                         <div class="card-projeto__placeholder">
                             <i class="fa-solid fa-microscope" aria-hidden="true"></i>
@@ -465,6 +475,7 @@
                         </div>
                     </article>
 
+                    <!-- Feira de Ciências -->
                     <article class="card-projeto">
                         <div class="card-projeto__placeholder">
                             <i class="fa-solid fa-atom" aria-hidden="true"></i>
@@ -477,6 +488,7 @@
                         </div>
                     </article>
 
+                    <!-- Robótica -->
                     <article class="card-projeto">
                         <div class="card-projeto__placeholder">
                             <i class="fa-solid fa-robot" aria-hidden="true"></i>
@@ -489,6 +501,7 @@
                         </div>
                     </article>
 
+                    <!-- Olimpíadas -->
                     <article class="card-projeto">
                         <div class="card-projeto__placeholder">
                             <i class="fa-solid fa-trophy" aria-hidden="true"></i>
@@ -505,7 +518,7 @@
         </section>
 
         <!-- =====================================================================
-             8. ACERVO CULTURAL (FOTOS, OBJETOS E DOCUMENTOS)
+             8. ACERVO CULTURAL (MUSEU DIGITAL)
              ===================================================================== -->
         <section class="section acervo" id="acervo" aria-labelledby="titulo-acervo">
             <div class="container">
@@ -513,55 +526,63 @@
                     <span class="section__subtitle">Museu Digital & Memória</span>
                     <h2 class="section__title" id="titulo-acervo">Acervo Cultural</h2>
                     <p class="section__description">
-                        Explore nosso repositório histórico dividido por categorias: fotos, objetos e documentos.
+                        Preservação do patrimônio histórico, objetos e registros da história da instituição.
                     </p>
                 </header>
 
+                <!-- Filtros do Acervo -->
+                <div class="acervo__filters">
+                    <button type="button" class="acervo__filter-btn acervo__filter-btn--active" data-filter="todos">Todos</button>
+                    <button type="button" class="acervo__filter-btn" data-filter="fotos">Fotografias Históricas</button>
+                    <button type="button" class="acervo__filter-btn" data-filter="objetos">Objetos Históricos</button>
+                    <button type="button" class="acervo__filter-btn" data-filter="documentos">Documentos</button>
+                </div>
+
                 <div class="acervo__grid">
-                    <!-- Pasta 1: Fotos -->
-                    <button type="button" class="acervo__item" data-category="fotos" aria-label="Abrir pasta de Fotografias Históricas">
+                    <!-- Foto Histórica -->
+                    <article class="acervo__item" data-category="fotos">
                         <div class="acervo__placeholder-img">
                             <i class="fa-solid fa-camera-retro" aria-hidden="true"></i>
-                            <span>[ Abrir Pasta de Fotos ]</span>
+                            <span>[ Foto Histórica ]</span>
                         </div>
                         <div class="acervo__content">
-                            <span class="acervo__category">Categoria</span>
-                            <h3 class="acervo__title">Fotografias Históricas</h3>
-                            <p class="acervo__desc">Imagens antigas da fachada, turmas e momentos marcantes da escola. Clique para visualizar e ampliar as fotos.</p>
+                            <span class="acervo__category">Fotografias Históricas</span>
+                            <h3 class="acervo__title">Fachada da Escola em 1920</h3>
+                            <p class="acervo__desc">Registro do edifício centenário e do entorno da escola no início do século XX.</p>
                         </div>
-                    </button>
+                    </article>
 
-                    <!-- Pasta 2: Objetos Históricos -->
-                    <button type="button" class="acervo__item" data-category="objetos" aria-label="Abrir pasta de Objetos Históricos">
+                    <!-- Objeto Histórico -->
+                    <article class="acervo__item" data-category="objetos">
                         <div class="acervo__placeholder-img">
                             <i class="fa-solid fa-microscope" aria-hidden="true"></i>
-                            <span>[ Abrir Pasta de Objetos ]</span>
+                            <span>[ Objeto do Laboratório ]</span>
                         </div>
                         <div class="acervo__content">
-                            <span class="acervo__category">Categoria</span>
-                            <h3 class="acervo__title">Objetos Históricos</h3>
-                            <p class="acervo__desc">Instrumentos científicos, microscópios e materiais do século passado. Clique para abrir as fotos ampliadas.</p>
+                            <span class="acervo__category">Objetos Históricos</span>
+                            <h3 class="acervo__title">Microscópio Centenário</h3>
+                            <p class="acervo__desc">Equipamento científico importado para as aulas práticas de ciências no século passado.</p>
                         </div>
-                    </button>
+                    </article>
 
-                    <!-- Pasta 3: Documentos -->
-                    <button type="button" class="acervo__item" data-category="documentos" aria-label="Abrir pasta de Documentos Históricos">
+                    <!-- Documento -->
+                    <article class="acervo__item" data-category="documentos">
                         <div class="acervo__placeholder-img">
                             <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
-                            <span>[ Abrir Pasta de Documentos ]</span>
+                            <span>[ Registro de Fundação ]</span>
                         </div>
                         <div class="acervo__content">
-                            <span class="acervo__category">Categoria</span>
-                            <h3 class="acervo__title">Documentos Históricos</h3>
-                            <p class="acervo__desc">Atas de fundação, regimentos e periódicos estudantis centenários com leitura completa expansível.</p>
+                            <span class="acervo__category">Documentos</span>
+                            <h3 class="acervo__title">Ata de Fundação de 1873</h3>
+                            <p class="acervo__desc">Registro documental contendo os objetivos de criação da Sociedade Culto à Ciência.</p>
                         </div>
-                    </button>
+                    </article>
                 </div>
             </div>
         </section>
 
         <!-- =====================================================================
-             9. GALERIA
+             9. GALERIA (COM LIGHTBOX)
              ===================================================================== -->
         <section class="section galeria" id="galeria" aria-labelledby="titulo-galeria">
             <div class="container">
@@ -569,58 +590,76 @@
                     <span class="section__subtitle">Registros da Escola</span>
                     <h2 class="section__title" id="titulo-galeria">Galeria</h2>
                     <p class="section__description">
-                        Imagens demonstrativas das dependências e espaços de aprendizado da escola.
+                        Clique nas imagens demonstrativas para expandir no visualizador (Lightbox).
                     </p>
                 </header>
 
                 <div class="galeria__grid">
-                    <div class="galeria__item">
+                    <button type="button" class="galeria__item" data-index="0" aria-label="Abrir foto 1 da galeria em destaque">
                         <div class="galeria__placeholder">
                             <i class="fa-solid fa-image" aria-hidden="true"></i>
                             <span>[ Foto 1: Fachada Principal ]</span>
                         </div>
-                    </div>
+                        <div class="galeria__overlay">
+                            <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                        </div>
+                    </button>
 
-                    <div class="galeria__item">
+                    <button type="button" class="galeria__item" data-index="1" aria-label="Abrir foto 2 da galeria em destaque">
                         <div class="galeria__placeholder">
                             <i class="fa-solid fa-image" aria-hidden="true"></i>
                             <span>[ Foto 2: Laboratório ]</span>
                         </div>
-                    </div>
+                        <div class="galeria__overlay">
+                            <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                        </div>
+                    </button>
 
-                    <div class="galeria__item">
+                    <button type="button" class="galeria__item" data-index="2" aria-label="Abrir foto 3 da galeria em destaque">
                         <div class="galeria__placeholder">
                             <i class="fa-solid fa-image" aria-hidden="true"></i>
                             <span>[ Foto 3: Pátio Interno ]</span>
                         </div>
-                    </div>
+                        <div class="galeria__overlay">
+                            <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                        </div>
+                    </button>
 
-                    <div class="galeria__item">
+                    <button type="button" class="galeria__item" data-index="3" aria-label="Abrir foto 4 da galeria em destaque">
                         <div class="galeria__placeholder">
                             <i class="fa-solid fa-image" aria-hidden="true"></i>
                             <span>[ Foto 4: Quadra Coberta ]</span>
                         </div>
-                    </div>
+                        <div class="galeria__overlay">
+                            <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                        </div>
+                    </button>
 
-                    <div class="galeria__item">
+                    <button type="button" class="galeria__item" data-index="4" aria-label="Abrir foto 5 da galeria em destaque">
                         <div class="galeria__placeholder">
                             <i class="fa-solid fa-image" aria-hidden="true"></i>
                             <span>[ Foto 5: Biblioteca ]</span>
                         </div>
-                    </div>
+                        <div class="galeria__overlay">
+                            <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                        </div>
+                    </button>
 
-                    <div class="galeria__item">
+                    <button type="button" class="galeria__item" data-index="5" aria-label="Abrir foto 6 da galeria em destaque">
                         <div class="galeria__placeholder">
                             <i class="fa-solid fa-image" aria-hidden="true"></i>
                             <span>[ Foto 6: Sala de Aula ]</span>
                         </div>
-                    </div>
+                        <div class="galeria__overlay">
+                            <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                        </div>
+                    </button>
                 </div>
             </div>
         </section>
 
-        <!-- Lightbox Modal de Ampliação Exclusivo para as Fotos do Acervo -->
-        <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de Imagem do Acervo" hidden>
+        <!-- Estrutura do Lightbox Modal Compartilhado -->
+        <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de Imagem" hidden>
             <div class="lightbox__backdrop" id="lightbox-backdrop"></div>
             <div class="lightbox__content">
                 <button type="button" class="lightbox__close" id="lightbox-close" aria-label="Fechar visualizador">&times;</button>
@@ -629,8 +668,8 @@
                 </button>
                 <div class="lightbox__body">
                     <div class="lightbox__placeholder" id="lightbox-display">
-                        <i class="fa-solid fa-camera-retro" aria-hidden="true"></i>
-                        <span id="lightbox-caption">[ Foto do Acervo Ampliada ]</span>
+                        <i class="fa-solid fa-image" aria-hidden="true"></i>
+                        <span id="lightbox-caption">[ Imagem Ampliada ]</span>
                     </div>
                 </div>
                 <button type="button" class="lightbox__nav lightbox__nav--next" id="lightbox-next" aria-label="Próxima imagem">
@@ -639,8 +678,8 @@
             </div>
         </div>
 
-        <!-- =====================================================================
-             10. CONTATO (FORMULÁRIO ÚNICO DEMONSTRATIVO)
+       <!-- =====================================================================
+             10. CONTATO 
              ===================================================================== -->
         <section class="section contato" id="contato" aria-labelledby="titulo-contato">
             <div class="container">
@@ -684,67 +723,24 @@
         </section>
 
     </main>
-
-    <!-- =========================================================================
-         MODAIS DE PASTA (ACERVO E PROFESSORES)
-         ========================================================================= -->
-         
-    <!-- 1. MODAL PASTA DO ACERVO CULTURAL -->
-    <div class="modal-acervo" id="modal-acervo" role="dialog" aria-modal="true" aria-label="Pasta de Itens do Acervo" hidden>
-        <div class="modal-acervo__backdrop" id="modal-acervo-backdrop"></div>
-        <div class="modal-acervo__window">
-            <header class="modal-acervo__header">
-                <div class="modal-acervo__header-title">
-                    <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
-                    <h3 id="modal-acervo-titulo">Pasta do Acervo</h3>
-                </div>
-                <button type="button" class="modal-acervo__close" id="modal-acervo-close" aria-label="Fechar pasta">&times;</button>
-            </header>
-            <div class="modal-acervo__body">
-                <p class="modal-acervo__desc" id="modal-acervo-desc">Conteúdo da pasta histórica do acervo.</p>
-                <div class="modal-acervo__grid" id="modal-acervo-grid">
-                    <!-- Conteúdo gerado dinamicamente via JS -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 2. MODAL PASTA DE PROFESSORES -->
-    <div class="modal-professores" id="modal-professores" role="dialog" aria-modal="true" aria-label="Pasta da Área do Conhecimento" hidden>
-        <div class="modal-professores__backdrop" id="modal-professores-backdrop"></div>
-        <div class="modal-professores__window">
-            <header class="modal-professores__header">
-                <div class="modal-professores__header-title">
-                    <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
-                    <h3 id="modal-professores-titulo">Professores da Área</h3>
-                </div>
-                <button type="button" class="modal-professores__close" id="modal-professores-close" aria-label="Fechar lista de professores">&times;</button>
-            </header>
-            <div class="modal-professores__body">
-                <p class="modal-professores__desc" id="modal-professores-desc">Corpo docente integrante desta disciplina.</p>
-                <div class="modal-professores__grid" id="modal-professores-grid">
-                    <!-- Cards informativos gerados dinamicamente via JS -->
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- =========================================================================
          CHATBOT FLUTUANTE (COM MASCOTE CULTINHO)
          ========================================================================= -->
     <aside class="chatbot" id="chatbot-container" aria-label="Assistente Virtual da Escola">
         <button type="button" class="chatbot__toggle" id="chatbot-toggle-btn" aria-label="Abrir assistente Cultinho" aria-expanded="false">
             <div class="chatbot__toggle-avatar">
-                <i class="fa-solid fa-owl" aria-hidden="true"></i>
+                <img src="Saru.png" alt="Cultinho" class="chatbot__avatar-img">
             </div>
             <span class="chatbot__toggle-label">Dúvidas? Fale com o Cultinho</span>
         </button>
+
+
 
         <div class="chatbot__window" id="chatbot-window" hidden>
             <header class="chatbot__header">
                 <div class="chatbot__header-info">
                     <div class="chatbot__mascote-header">
-                        <i class="fa-solid fa-owl" aria-hidden="true"></i>
+                        <img src="Saru.png" alt="Cultinho" class="chatbot__avatar-img">
                     </div>
                     <div>
                         <strong class="chatbot__title">Cultinho • Assistente Virtual</strong>
@@ -755,8 +751,14 @@
             </header>
 
             <div class="chatbot__messages" id="chatbot-messages">
+                <!--
+                    MENSAGEM DEMONSTRATIVA INICIAL
+                    [INTEGRAÇÃO FUTURA DIALOGFLOW]:
+                    No script.js, a função de envio de mensagens do chatbot pode ser conectada
+                    via fetch POST com a API do Dialogflow/Google Cloud para respostas automatizadas inteligentes.
+                -->
                 <div class="chatbot__message chatbot__message--bot">
-                    <p>Olá! Sou o <strong>Cultinho</strong>, mascote do Culto à Ciência! Como posso ajudar você hoje?</p>
+                    <p>Olá! Sou o <strong>Cultinho</strong>, mascote do Culto à Ciência! Oque você gostaria de saber hoje? <br> 1 - Horários <br> 2 - Matrículas <br> 3 - Itinerários <br> 4 - Localização <br> 5 - História<br> 6 - Acolhimento <br> 7 - Mascote <br> 8 - Outros</p>
                 </div>
             </div>
 
