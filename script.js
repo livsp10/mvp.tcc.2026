@@ -1,32 +1,22 @@
-/* ==========================================================================
-  
-   
-   Sumário de Funcionalidades:
-   1. CONTROLE DO MENU MOBILE (HAMBÚRGUER)
-   2. ACESSIBILIDADE (FONTE E ALTO CONTRASTE)
-   3. GERENCIAMENTO INDEPENDENTE DO ACERVO CULTURAL (FOTOS, OBJETOS E DOCUMENTOS)
-   4. GERENCIAMENTO INDEPENDENTE DOS PROFESSORES (SEM LIGHTBOX)
-   5. VALIDAÇÃO DO FORMULÁRIO DE CONTATO
-   6. CHATBOT FLUTUANTE (COM MASCOTE CULTINHO)
-   7. BOTÃO VOLTAR AO TOPO & ROLAGEM SUAVE
-   ========================================================================== */
-
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* ==========================================================================
-       1. CONTROLE DO MENU MOBILE (HAMBÚRGUER)
-       ========================================================================== */
+    /* ============================================================
+       1. CONTROLE DO MENU MOBILE
+       ============================================================ */
+
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mainNav = document.getElementById('main-nav');
     const menuLinks = document.querySelectorAll('.header__link');
 
     function toggleMenu() {
+        if (!mainNav || !hamburgerBtn) return;
+
         const estaAberto = mainNav.classList.contains('is-open');
 
         mainNav.classList.toggle('is-open');
         hamburgerBtn.classList.toggle('is-active');
-        hamburgerBtn.setAttribute('aria-expanded', !estaAberto);
-        
+        hamburgerBtn.setAttribute('aria-expanded', String(!estaAberto));
+
         if (!estaAberto && menuLinks.length > 0) {
             menuLinks[0].focus();
         }
@@ -38,20 +28,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     menuLinks.forEach(link => {
         link.addEventListener('click', () => {
-            if (mainNav.classList.contains('is-open')) {
+            if (mainNav && mainNav.classList.contains('is-open')) {
                 toggleMenu();
             }
         });
     });
 
-
-    /* ==========================================================================
+    /* ============================================================
        2. ACESSIBILIDADE
-       ========================================================================== */
+       ============================================================ */
+
     const btnAumentarFonte = document.getElementById('btn-aumentar-fonte');
     const btnRestaurarFonte = document.getElementById('btn-restaurar-fonte');
     const btnDiminuirFonte = document.getElementById('btn-diminuir-fonte');
-    
+
     let tamanhoFonteAtual = 100;
     const limiteMaximoFonte = 125;
     const limiteMinimoFonte = 90;
@@ -86,8 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnAltoContraste) {
         btnAltoContraste.addEventListener('click', () => {
             document.body.classList.toggle('alto-contraste');
-            const contrasteAtivo = document.body.classList.contains('alto-contraste');
-            localStorage.setItem('altoContrasteAtivo', contrasteAtivo);
+
+            const contrasteAtivo =
+                document.body.classList.contains('alto-contraste');
+
+            localStorage.setItem('altoContrasteAtivo', String(contrasteAtivo));
         });
 
         if (localStorage.getItem('altoContrasteAtivo') === 'true') {
@@ -95,65 +88,69 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    /* ============================================================
+       3. FILTROS DOS PROFESSORES
+       ============================================================ */
 
-    /* ==========================================================================
-       3. GERENCIAMENTO DO ACERVO CULTURAL (FOTOS, OBJETOS E DOCUMENTOS COM LEIA MAIS)
-       ========================================================================== */
-    const repositorioAcervo = {
-        fotos: {
-            tipo: "imagem",
-            titulo: "Pasta: Fotografias Históricas",
-            descricao: "Registros fotográficos do edifício centenário, eventos cívicos e turmas.",
-            itens: [
-                "Fachada Principal em 1920",
-                "Primeira Turma de Formandos (1925)",
-                "Desfile Cívico em Campinas (1940)",
-                "Pátio Interno e Edifício Histórico"
-            ]
-        },
-        objetos: {
-            tipo: "imagem",
-            titulo: "Pasta: Objetos Históricos",
-            descricao: "Instrumentos científicos e equipamentos de precisão do século passado.",
-            itens: [
-                "Microscópio de Latão Europeu (1900)",
-                "Telescópio Didático Antigo",
-                "Balança de Precisão de Laboratório",
-                "Mobiliário Escolar de Madeira Maciça"
-            ]
-        },
-        documentos: {
-            tipo: "texto",
-            titulo: "Pasta: Documentos Históricos",
-            descricao: "Registros oficiais, atas de reunião e arquivos históricos da instituição.",
-            itens: [
-                {
-                    titulo: "Ata de Fundação Oficial (1873)",
-                    resumo: "Registro manuscrito de fundação da Sociedade Culto à Ciência pelos membros fundadores em Campinas.",
-                    completo: "No dia 13 de abril de 1873, cidadãos campineiros reuniram-se para formalizar a fundação da Sociedade Culto à Ciência. O documento destaca os princípios iluministas, a busca pelo ensino laico e o incentivo ao pensamento científico para a juventude da região."
-                },
-                {
-                    titulo: "Primeiro Regimento Interno (1890)",
-                    resumo: "Normas disciplinares, organização das matérias e diretrizes do corpo docente da época.",
-                    completo: "O regimento estabelecia o horário das aulas, os deveres dos estudantes e a estrutura dos laboratórios de física e química. O código de convivência prezava pelo respeito mútuo, assiduidade e rigor acadêmico na formação dos alunos."
-                },
-                {
-                    titulo: "Edição nº 01 do Jornal Estudantil (1915)",
-                    resumo: "Primeiro informativo produzido exclusivamente pelos estudantes da escola.",
-                    completo: "Publicado no início do século XX, o jornal trazia crônicas, poesias, debates sobre a política municipal de Campinas e notícias sobre os clubes de debates científicos organizados pelos alunos no contraturno escolar."
+    const botoesFiltroProfessores = document.querySelectorAll('.professores__filter-btn');
+    const cardsProfessores = document.querySelectorAll('.professores__card');
+
+    botoesFiltroProfessores.forEach(botao => {
+        botao.addEventListener('click', () => {
+            botoesFiltroProfessores.forEach(btn =>
+                btn.classList.remove('professores__filter-btn--active')
+            );
+
+            botao.classList.add('professores__filter-btn--active');
+
+            const areaSelecionada = botao.getAttribute('data-filter');
+
+            cardsProfessores.forEach(card => {
+                const areaCard = card.getAttribute('data-area');
+
+                if (areaSelecionada === 'todos' || areaSelecionada === areaCard) {
+                    card.classList.remove('is-hidden');
+                } else {
+                    card.classList.add('is-hidden');
                 }
-            ]
-        }
-    };
+            });
+        });
+    });
 
-    const modalAcervo = document.getElementById('modal-acervo');
-    const modalAcervoTitulo = document.getElementById('modal-acervo-titulo');
-    const modalAcervoDesc = document.getElementById('modal-acervo-desc');
-    const modalAcervoGrid = document.getElementById('modal-acervo-grid');
-    const modalAcervoClose = document.getElementById('modal-acervo-close');
-    const modalAcervoBackdrop = document.getElementById('modal-acervo-backdrop');
+    /* ============================================================
+       4. FILTROS DO ACERVO
+       ============================================================ */
 
-    // Lightbox Exclusivo para o Acervo
+    const botoesFiltroAcervo = document.querySelectorAll('.acervo__filter-btn');
+    const itensAcervo = document.querySelectorAll('.acervo__item');
+
+    botoesFiltroAcervo.forEach(botao => {
+        botao.addEventListener('click', () => {
+            botoesFiltroAcervo.forEach(btn =>
+                btn.classList.remove('acervo__filter-btn--active')
+            );
+
+            botao.classList.add('acervo__filter-btn--active');
+
+            const categoriaSelecionada = botao.getAttribute('data-filter');
+
+            itensAcervo.forEach(item => {
+                const categoriaItem = item.getAttribute('data-category');
+
+                if (categoriaSelecionada === 'todos' || categoriaSelecionada === categoriaItem) {
+                    item.classList.remove('is-hidden');
+                } else {
+                    item.classList.add('is-hidden');
+                }
+            });
+        });
+    });
+
+    /* ============================================================
+       5. LIGHTBOX DA GALERIA
+       ============================================================ */
+
+    const galeriaItens = document.querySelectorAll('.galeria__item');
     const lightbox = document.getElementById('lightbox');
     const lightboxClose = document.getElementById('lightbox-close');
     const lightboxBackdrop = document.getElementById('lightbox-backdrop');
@@ -161,251 +158,118 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxNext = document.getElementById('lightbox-next');
     const lightboxCaption = document.getElementById('lightbox-caption');
 
-    let listaAtualAcervo = [];
-    let indiceAcervoAtual = 0;
+    let indiceAtual = 0;
 
-    function abrirLightboxAcervo(index, lista) {
-        listaAtualAcervo = lista;
-        indiceAcervoAtual = index;
-        atualizarLightboxAcervo();
-        if (lightbox) {
-            lightbox.removeAttribute('hidden');
-            document.body.style.overflow = 'hidden';
+    const legendasGaleria = [
+        'Fachada Principal da Escola',
+        'Laboratório Multidisciplinar',
+        'Pátio Interno e Área Verde',
+        'Quadra Poliesportiva Coberta',
+        'Biblioteca e Espaço de Estudos',
+        'Sala de Aula e Ambientes de Aprendizagem'
+    ];
+
+    function atualizarLightbox() {
+        if (lightboxCaption && legendasGaleria[indiceAtual]) {
+            lightboxCaption.textContent =
+                `[ Foto ${indiceAtual + 1}: ${legendasGaleria[indiceAtual]} ]`;
         }
     }
 
-    function fecharLightboxAcervo() {
-        if (lightbox) {
-            lightbox.setAttribute('hidden', '');
-            document.body.style.overflow = '';
-        }
+    function abrirLightbox(index) {
+        if (!lightbox) return;
+
+        indiceAtual = index;
+        atualizarLightbox();
+        lightbox.removeAttribute('hidden');
+        document.body.style.overflow = 'hidden';
     }
 
-    function atualizarLightboxAcervo() {
-        if (lightboxCaption && listaAtualAcervo[indiceAcervoAtual]) {
-            lightboxCaption.textContent = `[ Acervo Ampliado: ${listaAtualAcervo[indiceAcervoAtual]} ]`;
-        }
+    function fecharLightbox() {
+        if (!lightbox) return;
+
+        lightbox.setAttribute('hidden', '');
+        document.body.style.overflow = '';
     }
 
-    if (lightboxClose) lightboxClose.addEventListener('click', fecharLightboxAcervo);
-    if (lightboxBackdrop) lightboxBackdrop.addEventListener('click', fecharLightboxAcervo);
+    function imagemAnterior() {
+        indiceAtual =
+            (indiceAtual - 1 + legendasGaleria.length) %
+            legendasGaleria.length;
+
+        atualizarLightbox();
+    }
+
+    function proximaImagem() {
+        indiceAtual =
+            (indiceAtual + 1) %
+            legendasGaleria.length;
+
+        atualizarLightbox();
+    }
+
+    galeriaItens.forEach((item, index) => {
+        item.addEventListener('click', () => abrirLightbox(index));
+    });
+
+    if (lightboxClose) {
+        lightboxClose.addEventListener('click', fecharLightbox);
+    }
+
+    if (lightboxBackdrop) {
+        lightboxBackdrop.addEventListener('click', fecharLightbox);
+    }
 
     if (lightboxPrev) {
-        lightboxPrev.addEventListener('click', () => {
-            if (listaAtualAcervo.length === 0) return;
-            indiceAcervoAtual = (indiceAcervoAtual - 1 + listaAtualAcervo.length) % listaAtualAcervo.length;
-            atualizarLightboxAcervo();
-        });
+        lightboxPrev.addEventListener('click', imagemAnterior);
     }
 
     if (lightboxNext) {
-        lightboxNext.addEventListener('click', () => {
-            if (listaAtualAcervo.length === 0) return;
-            indiceAcervoAtual = (indiceAcervoAtual + 1) % listaAtualAcervo.length;
-            atualizarLightboxAcervo();
-        });
+        lightboxNext.addEventListener('click', proximaImagem);
     }
 
-    function abrirPastaAcervo(categoria) {
-        const dados = repositorioAcervo[categoria];
-        if (!modalAcervo || !dados) return;
-
-        modalAcervoTitulo.textContent = dados.titulo;
-        modalAcervoDesc.textContent = dados.descricao;
-        modalAcervoGrid.innerHTML = '';
-
-        if (dados.tipo === "imagem") {
-            dados.itens.forEach((nomeItem, index) => {
-                const div = document.createElement('div');
-                div.className = 'modal-acervo__item';
-                div.innerHTML = `
-                    <i class="fa-solid fa-camera-retro" aria-hidden="true"></i>
-                    <span>${nomeItem}</span>
-                `;
-                div.addEventListener('click', () => {
-                    abrirLightboxAcervo(index, dados.itens);
-                });
-                modalAcervoGrid.appendChild(div);
-            });
-        } else if (dados.tipo === "texto") {
-            dados.itens.forEach((doc, index) => {
-                const cardDoc = document.createElement('div');
-                cardDoc.className = 'acervo__doc-card';
-                cardDoc.innerHTML = `
-                    <div class="acervo__placeholder-img">
-                        <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
-                        <span>[ Documento ${index + 1} ]</span>
-                    </div>
-                    <div class="acervo__content">
-                        <h4 class="acervo__title">${doc.titulo}</h4>
-                        <p class="acervo__desc-short">${doc.resumo}</p>
-                        <div class="acervo__doc-full" id="doc-texto-${index}" hidden>
-                            <p>${doc.completo}</p>
-                        </div>
-                        <button type="button" class="btn-read-more" id="btn-doc-${index}">
-                            Leia Mais <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                `;
-
-                modalAcervoGrid.appendChild(cardDoc);
-
-                const btnLeiaMais = cardDoc.querySelector(`#btn-doc-${index}`);
-                const textoCompleto = cardDoc.querySelector(`#doc-texto-${index}`);
-
-                btnLeiaMais.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const estaOculto = textoCompleto.hasAttribute('hidden');
-
-                    if (estaOculto) {
-                        textoCompleto.removeAttribute('hidden');
-                        btnLeiaMais.innerHTML = 'Leia Menos <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>';
-                    } else {
-                        textoCompleto.setAttribute('hidden', '');
-                        btnLeiaMais.innerHTML = 'Leia Mais <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>';
-                    }
-                });
-            });
+    document.addEventListener('keydown', e => {
+        if (lightbox && !lightbox.hasAttribute('hidden')) {
+            if (e.key === 'Escape') fecharLightbox();
+            if (e.key === 'ArrowLeft') imagemAnterior();
+            if (e.key === 'ArrowRight') proximaImagem();
         }
+    });
 
-        modalAcervo.removeAttribute('hidden');
-        document.body.style.overflow = 'hidden';
-    }
+    /* ============================================================
+       6. FORMULÁRIO DE CONTATO
+       ============================================================ */
 
-    function fecharPastaAcervo() {
-        if (modalAcervo) {
-            modalAcervo.setAttribute('hidden', '');
-            document.body.style.overflow = '';
-        }
-    }
+    const formularioContato = document.getElementById('contact-form');
 
-    document.querySelectorAll('.acervo__item').forEach(card => {
-        card.addEventListener('click', (e) => {
+    if (formularioContato) {
+        formularioContato.addEventListener('submit', e => {
             e.preventDefault();
-            const categoria = card.getAttribute('data-category');
-            if (categoria) abrirPastaAcervo(categoria);
+
+            const nome = document.getElementById('nome');
+            const email = document.getElementById('email');
+            const mensagem = document.getElementById('mensagem');
+
+            if (!nome || !email || !mensagem) return;
+
+            if (
+                nome.value.trim() === '' ||
+                email.value.trim() === '' ||
+                mensagem.value.trim() === ''
+            ) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+
+            alert('Mensagem enviada com sucesso!');
+            formularioContato.reset();
         });
-    });
-
-    if (modalAcervoClose) modalAcervoClose.addEventListener('click', fecharPastaAcervo);
-    if (modalAcervoBackdrop) modalAcervoBackdrop.addEventListener('click', fecharPastaAcervo);
-
-
-    /* ==========================================================================
-       4. GERENCIAMENTO DOS PROFESSORES (LISTA DE PROFESSORES SEM LIGHTBOX)
-       ========================================================================== */
-    const repositorioProfessores = {
-        linguagens: {
-            titulo: "Pasta: Professores de Linguagens",
-            descricao: "Docentes das disciplinas de Língua Portuguesa, Literatura, Inglês e Artes.",
-            professores: [
-                { nome: "Prof. [ Nome do Professor ]", disciplina: "Língua Portuguesa" },
-                { nome: "Profª. [ Nome da Professora ]", disciplina: "Literatura e Redação" },
-                { nome: "Prof. [ Nome do Professor ]", disciplina: "Língua Inglesa" },
-                { nome: "Profª. [ Nome da Professora ]", disciplina: "Artes Visuais" }
-            ]
-        },
-        exatas: {
-            titulo: "Pasta: Professores de Exatas",
-            descricao: "Docentes das disciplinas de Matemática e Raciocínio Lógico.",
-            professores: [
-                { nome: "Prof. [ Nome do Professor ]", disciplina: "Matemática I" },
-                { nome: "Profª. [ Nome da Professora ]", disciplina: "Matemática II e Álgebra" },
-                { nome: "Prof. [ Nome do Professor ]", disciplina: "Raciocínio Lógico" }
-            ]
-        },
-        humanas: {
-            titulo: "Pasta: Professores de Ciências Humanas",
-            descricao: "Docentes das disciplinas de História, Geografia, Filosofia e Sociologia.",
-            professores: [
-                { nome: "Prof. [ Nome do Professor ]", disciplina: "História Geral e do Brasil" },
-                { nome: "Profª. [ Nome da Professora ]", disciplina: "Geografia e Geopolítica" },
-                { nome: "Prof. [ Nome do Professor ]", disciplina: "Filosofia e Ética" },
-                { nome: "Profª. [ Nome da Professora ]", disciplina: "Sociologia" }
-            ]
-        },
-        natureza: {
-            titulo: "Pasta: Professores de Ciências da Natureza",
-            descricao: "Docentes das disciplinas de Física, Química e Biologia.",
-            professores: [
-                { nome: "Prof. [ Nome do Professor ]", disciplina: "Física Aplicada" },
-                { nome: "Profª. [ Nome da Professora ]", disciplina: "Química Geral" },
-                { nome: "Prof. [ Nome do Professor ]", disciplina: "Biologia e Meio Ambiente" }
-            ]
-        },
-        tecnico: {
-            titulo: "Pasta: Professores do Ensino Técnico",
-            descricao: "Docentes dos itinerários técnicos de Desenvolvimento de Sistemas e Enfermagem.",
-            professores: [
-                { nome: "Prof. [ Nome do Professor ]", disciplina: "Lógica de Programação e Web" },
-                { nome: "Profª. [ Nome da Professora ]", disciplina: "Anatomia e Práticas de Enfermagem" }
-            ]
-        }
-    };
-
-    const modalProfessores = document.getElementById('modal-professores');
-    const modalProfessoresTitulo = document.getElementById('modal-professores-titulo');
-    const modalProfessoresDesc = document.getElementById('modal-professores-desc');
-    const modalProfessoresGrid = document.getElementById('modal-professores-grid');
-    const modalProfessoresClose = document.getElementById('modal-professores-close');
-    const modalProfessoresBackdrop = document.getElementById('modal-professores-backdrop');
-
-    function abrirPastaProfessores(area) {
-        const dados = repositorioProfessores[area];
-        if (!modalProfessores || !dados) return;
-
-        modalProfessoresTitulo.textContent = dados.titulo;
-        modalProfessoresDesc.textContent = dados.descricao;
-        modalProfessoresGrid.innerHTML = '';
-
-        dados.professores.forEach((prof) => {
-            const div = document.createElement('div');
-            div.className = 'modal-professores__item';
-            div.innerHTML = `
-                <i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i>
-                <strong>${prof.nome}</strong>
-                <small>${prof.disciplina}</small>
-            `;
-            modalProfessoresGrid.appendChild(div);
-        });
-
-        modalProfessores.removeAttribute('hidden');
-        document.body.style.overflow = 'hidden';
     }
 
-    function fecharPastaProfessores() {
-        if (modalProfessores) {
-            modalProfessores.setAttribute('hidden', '');
-            document.body.style.overflow = '';
-        }
-    }
+    /* ============================================================
+       7. CHATBOT FLUTUANTE - CULTINHO
+       ============================================================ */
 
-    document.querySelectorAll('.professores__pasta-card').forEach(card => {
-        card.addEventListener('click', (e) => {
-            e.preventDefault();
-            const area = card.getAttribute('data-area');
-            if (area) abrirPastaProfessores(area);
-        });
-    });
-
-    if (modalProfessoresClose) modalProfessoresClose.addEventListener('click', fecharPastaProfessores);
-    if (modalProfessoresBackdrop) modalProfessoresBackdrop.addEventListener('click', fecharPastaProfessores);
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            fecharPastaAcervo();
-            fecharPastaProfessores();
-            fecharLightboxAcervo();
-        }
-    });
-
-
-    
-
-
-    /* ==========================================================================
-       6. CHATBOT FLUTUANTE (COM MASCOTE CULTINHO)
-       ========================================================================== */
     const chatbotToggleBtn = document.getElementById('chatbot-toggle-btn');
     const chatbotWindow = document.getElementById('chatbot-window');
     const chatbotCloseBtn = document.getElementById('chatbot-close-btn');
@@ -416,10 +280,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (chatbotToggleBtn && chatbotWindow) {
         chatbotToggleBtn.addEventListener('click', () => {
             const estaOculto = chatbotWindow.hasAttribute('hidden');
+
             if (estaOculto) {
                 chatbotWindow.removeAttribute('hidden');
                 chatbotToggleBtn.setAttribute('aria-expanded', 'true');
-                chatbotInput.focus();
+
+                if (chatbotInput) {
+                    chatbotInput.focus();
+                }
             } else {
                 chatbotWindow.setAttribute('hidden', '');
                 chatbotToggleBtn.setAttribute('aria-expanded', 'false');
@@ -429,63 +297,125 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (chatbotCloseBtn) {
         chatbotCloseBtn.addEventListener('click', () => {
-            chatbotWindow.setAttribute('hidden', '');
-            chatbotToggleBtn.setAttribute('aria-expanded', 'false');
-        });
-    }
+            if (chatbotWindow) {
+                chatbotWindow.setAttribute('hidden', '');
+            }
 
-    if (chatbotForm) {
-        chatbotForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const textoMensagem = chatbotInput.value.trim();
-
-            if (textoMensagem !== '') {
-                adicionarMensagemChatbot(textoMensagem, 'user');
-                chatbotInput.value = '';
-
-                setTimeout(() => {
-                    const resposta = gerarRespostaMascote(textoMensagem);
-                    adicionarMensagemChatbot(resposta, 'bot');
-                }, 800);
+            if (chatbotToggleBtn) {
+                chatbotToggleBtn.setAttribute('aria-expanded', 'false');
             }
         });
     }
 
+    if (chatbotForm && chatbotInput) {
+        chatbotForm.addEventListener('submit', e => {
+            e.preventDefault();
+
+            const textoMensagem = chatbotInput.value.trim();
+
+            if (textoMensagem === '') return;
+
+            adicionarMensagemChatbot(textoMensagem, 'user');
+            chatbotInput.value = '';
+
+            setTimeout(() => {
+                const resposta = gerarRespostaMascote(textoMensagem);
+                adicionarMensagemChatbot(resposta, 'bot');
+            }, 800);
+        });
+    }
+
     function adicionarMensagemChatbot(texto, remetente) {
+        if (!chatbotMessages) return;
+
         const divMensagem = document.createElement('div');
-        divMensagem.classList.add('chatbot__message', `chatbot__message--${remetente}`);
-        
+        divMensagem.classList.add(
+            'chatbot__message',
+            `chatbot__message--${remetente}`
+        );
+
         const p = document.createElement('p');
         p.textContent = texto;
-        divMensagem.appendChild(p);
 
+        divMensagem.appendChild(p);
         chatbotMessages.appendChild(divMensagem);
+
         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
 
     function gerarRespostaMascote(mensagem) {
         const msg = mensagem.toLowerCase();
 
-        if (msg.includes('horario') || msg.includes('horário') || msg.includes('atendimento')) {
+        if (
+            msg.includes('horario') ||
+            msg.includes('horário') ||
+            msg.includes('1') ||
+            msg.includes('atendimento')
+        ) {
             return 'A secretaria atende de segunda a sexta-feira, das 07h00 às 19h00!';
-        } else if (msg.includes('matricula') || msg.includes('matrícula') || msg.includes('vaga')) {
-            return 'Para informações sobre matrículas e vagas, utilize o formulário de contato abaixo ou visite nossa secretaria!';
-        } else if (msg.includes('itinerario') || msg.includes('itinerário') || msg.includes('curso') || msg.includes('integral')) {
-            return 'Oferecemos Ensino Integral com itinerários em Desenvolvimento de Sistemas, Humanas, Exatas e Enfermagem!';
-        } else if (msg.includes('cultinho') || msg.includes('mascote')) {
-            return 'Eu sou o Cultinho, a corujinha mascote da E.E. Culto à Ciência! Represento a sabedoria e a inovação!';
-        } else {
-            return 'Obrigado por falar comigo! Esta é uma demonstração do assistente. Para contatos oficiais, use o formulário da página!';
         }
+
+        if (
+            msg.includes('matricula') ||
+            msg.includes('matrícula') ||
+            msg.includes('2') ||
+            msg.includes('vaga')
+        ) {
+            return 'Para informações sobre matrículas e vagas, utilize o formulário de contato abaixo ou visite nossa secretaria!';
+        }
+
+        if (
+            msg.includes('itinerario') ||
+            msg.includes('itinerário') ||
+            msg.includes('curso') ||
+            msg.includes('3') ||
+            msg.includes('integral')
+        ) {
+            return 'Oferecemos Ensino Integral com itinerários em Desenvolvimento de Sistemas, Humanas, Exatas e Enfermagem!';
+        }
+
+        if (
+            msg.includes('localização') ||
+            msg.includes('4') 
+        ) {
+            return 'A escola se localiza no seguinte endereço, R. Culto à Ciência, 422 - Botafogo, Campinas - SP, 13020-060';
+        }
+        
+        if (
+            msg.includes('historia') ||
+            msg.includes('história')||
+            msg.includes('5') 
+        ) {
+            return 'O Colégio Estadual Culto à Ciência, em Campinas (SP), fundado em 1874, é a escola mais antiga do Brasil a funcionar ininterruptamente no mesmo prédio. Criado por maçons da Loja Independência para promover o ensino laico e científico baseado no positivismo, o colégio é tombado como patrimônio histórico e é referência em educação, famoso por sua arquitetura clássica francesa e acervo centenário';
+        }
+
+        if (
+            msg.includes('cultinho') ||
+            msg.includes('7') ||
+            msg.includes('mascote')
+        ) {
+            return 'Eu sou o Cultinho, a corujinha mascote da E.E. Culto à Ciência! Represento a sabedoria e a inovação!';
+        }
+
+        if (
+            msg.includes('Acolhimento') ||
+            msg.includes('6') 
+        ) {
+            return 'A escola possui um acolhimento feito pelos laranjinhas que são alunos da 3° e 2° séries, eles bucam sempre acolher os novos alunos do Culto à Ciência com jogos, perguntas e conversas entre os laranjinhas e os novos alunos. ';
+        }
+
+        return 'Obrigado por falar comigo! Esta é uma demonstração do assistente. Para contatos oficiais, use o formulário da página!';
     }
 
+    /* ============================================================
+       8. BOTÃO VOLTAR AO TOPO
+       ============================================================ */
 
-    /* ==========================================================================
-       7. BOTÃO VOLTAR AO TOPO & ROLAGEM SUAVE
-       ========================================================================== */
     const btnVoltarTopo = document.getElementById('back-to-top-btn');
 
     window.addEventListener('scroll', () => {
+        if (!btnVoltarTopo) return;
+
         if (window.scrollY > 300) {
             btnVoltarTopo.classList.add('is-visible');
         } else {
